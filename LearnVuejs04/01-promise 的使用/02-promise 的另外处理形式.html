@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 第一种写法
+			// new Promise((resolve, reject) => {
+			// 	setTimeout(() => {
+			// 		resolve('hello')
+			// 		reject('err')
+			// 	}, 5000)
+			// }).then().catch()
+			
+			// 第二种写法 .then(succes, err) // 两个函数
+			new Promise((resolve, reject) => {
+				setTimeout(() => {
+					// resolve('hello')
+					reject('err')
+				}, 5000)
+			}).then(data => {
+				console.log(data);
+			}, err => {
+				console.log(err);
+			})
+		</script>
+	</body>
+</html>

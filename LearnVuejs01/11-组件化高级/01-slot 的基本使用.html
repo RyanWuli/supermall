@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn></cpn>
+			<cpn>
+				<span>这是 span</span>
+			</cpn>
+			<cpn>
+				<i>?????</i>
+				<span>span</span>
+				<p>p</p>
+			</cpn>
+		</div>
+		
+		<template id="cpn">
+			<div>
+				<h2>我是组件</h2>
+				<p>o(∩_∩)o 哈哈</p>
+				<!-- 默认 -->
+				<slot><button>点我</button></slot>
+			</div>
+		</template>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue'
+				},
+				components: {
+					cpn: {
+						template: '#cpn'
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<!-- 作用域在 app 实例 -->
+			<cpn v-show="isShow"></cpn>
+		</div>
+		
+		<template id="cpn">
+			<div>
+				<h2>我是子组件标题</h2>
+				<!-- 作用域在模板 cpn -->
+				<p v-show="isShow">我是子组件内容，o(∩_∩)o 哈哈</p>
+			</div>
+		</template>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					isShow: true
+				},
+				components: {
+					cpn: {
+						template: '#cpn',
+						data() {
+							return {
+								isShow: false
+							}
+						}
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

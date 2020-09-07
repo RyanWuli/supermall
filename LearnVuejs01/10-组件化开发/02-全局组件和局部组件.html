@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			{{message}}
+			<cpn></cpn>
+			<cpn></cpn>
+			<cpn></cpn>
+		</div>
+		
+		<div id="app2">
+			<cpn></cpn>
+			<cpn></cpn>
+		</div>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const cpnC = Vue.extend({
+				template: `
+					<div>
+						<h2>我是标题</h2>
+						<p>我是内容哈</p>
+					</div>
+				`
+			})
+			
+			// 注册主键（全局注册）
+			// Vue.component('cpn', cpnC)
+			
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue'
+				},
+				components: {
+					// 局部注册组件
+					cpn: cpnC
+				}
+			})
+			
+			const vm2 = new Vue({
+				el:'#app2'
+			})
+		</script>
+		
+	</body>
+</html>

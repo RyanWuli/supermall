@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.active {
+				color: red;
+			}
+			.line {
+				border-bottom: 1px solid cyan;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			{{message}}
+			<h2 :class="active">{{name}}</h2>
+			<h2 :class="{active:isActive, line:isLine}" @click="changeClass">{{name}}</h2>
+			<h2 :class="getClasses()" @click="changeClass">{{name}}</h2>
+		</div>
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					active: 'active',
+					name: '奥特曼',
+					isActive: true,
+					isLine: false
+				},
+				methods: {
+					changeClass: function () {
+						this.isActive = !this.isActive
+						this.isLine = !this.isLine
+					},
+					getClasses: function () {
+						return {active:this.isActive, line:this.isLine}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

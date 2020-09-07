@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button">按钮1</button>
+		<button type="button">按钮2</button>
+		<button type="button">按钮3</button>
+		<button type="button">按钮4</button>
+		<button type="button">按钮5</button>
+		<script type="text/javascript">
+			// var 没有区分作用域，在哪里都能使用
+			// {
+			// 	var name = 'McGrade'
+			// 	console.log(name);
+			// }
+			// console.log(name);
+
+			// if 块
+			// var fun
+			// if (true) {
+			// 	var name = 'why'
+			// 	fun = function () {
+			// 		console.log(name);
+			// 	}
+			// 	fun()
+			// }
+			// name = 'McGrade'
+			// fun()
+			
+			// 函数作用域
+			// var name = 'why'
+			// function abc (name) {
+			// 	console.log(name);
+			// }
+			// name = '蜡笔小新'
+			// abc('小白')
+
+			// for 作用域每个都是第五个，被后面的 i 值改掉了
+			// var btns = document.getElementsByTagName('button')
+			// for (var i = 0; i < btns.length; i++) {
+			// 	btns[i].addEventListener('click', function() {
+			// 		console.log('第' + i + '个按钮被点击')
+			// 	})
+			// }
+			// 闭包解决问题:因为函数有作用域,闭包就是把每次的值传入函数内部，然后加上作用域就不会有问题了
+			// for (var i = 0; i < btns.length; i++) {
+			// 	(function(num) {
+			// 		btns[i].addEventListener('click', function() {
+			// 			console.log('第' + (num + 1) + '个按钮被点击');
+			// 		})
+			// 	})(i)
+			// }
+			
+			// ES6 完美解决问题
+			const btns = document.getElementsByTagName('button')
+			for (let i = 0; i < btns.length; i++) {
+				btns[i].addEventListener('click', function () {
+					console.log('第' + (i + 1) + '个按钮被点击')
+				})
+			}
+		</script>
+	</body>
+</html>

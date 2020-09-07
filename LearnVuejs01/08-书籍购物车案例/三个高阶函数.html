@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			{{message}}
+			<button type="button" @click="test">测试按钮</button>
+		</div>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					numbers: [
+						23, 464, 2345, 4567, 46, 49643, 46896, 456, 4649, 45
+					]
+				},
+				methods: {
+					test() {
+						// filter 函数获取数组中大于5000的数字
+						let nums = this.numbers.filter(function (n) {
+							return n < 5000; // 返回 boolean 类型
+						})
+						console.log(nums);
+						
+						// map 函数的使用 获取 nums 中的每个数的2倍
+						let nos = nums.map(function (n) {
+							return n * 2 // 返回任意类型
+						})
+						console.log(nos);
+						
+						// reduce 函数对数组中所有的进行汇总,第二个参数0代表初始值就是函数需要使用的 preValue，下一次的值就会变成 return 的值,n就是数组中遍历的值，最终结果达到汇总
+						let no = nos.reduce(function (preValue, n) {
+							return preValue + n
+						}, 0)
+						console.log(no);
+						
+						// 上面三个方法汇总成为一个语句
+						let total = this.numbers.filter(function (n) {
+							return n < 5000
+						}).map(function (n) {
+							return n * 2
+						}).reduce(function (preV, n) {
+							return preV + n
+						}, 0) 
+						console.log('total:' + total);
+						
+						// 更简洁的写法
+						let totalNum = this.numbers.filter(n => n < 5000).map(n => n * 2).reduce((pre, n) => pre + n)
+						console.log('totalNum:' + totalNum);
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

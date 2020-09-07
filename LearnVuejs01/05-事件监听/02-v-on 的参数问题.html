@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 没有参数的时候，两种都可以可以省略（） -->
+			<button type="button" @click="btn1Click()">按钮1</button>
+			<button type="button" @click="btn1Click">按钮2</button>
+			
+			<!-- 定义了参数之后,括号不写东西则为 undefined，不写括号则是传递 event 对象，只需要接收就行了 -->
+			<button type="button" @click="btn2Click('abc')">按钮3</button>
+			<button type="button" @click="btn2Click()">按钮4</button>
+			<button type="button" @click="btn2Click">按钮5</button>
+			
+			<!-- 方法定义时 event 对象传输和自定义参数传输 ，6只能传递自定义123，7不传任何参数都是undefined，
+			8传递event給第一个参数param，9传递自定义参数和变量,10传递自定义参数和 event 对象-->
+			<button type="button" @click="btn3Click(123)">按钮6</button>
+			<button type="button" @click="btn3Click()">按钮7</button>
+			<button type="button" @click="btn3Click">按钮8</button>
+			<button type="button" @click="btn3Click(123, event)">按钮9</button>
+			<button type="button" @click="btn3Click(123, $event)">按钮10</button>
+		</div>
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					event: '这是 event 变量'
+				},
+				methods: {
+					btn1Click() {
+						console.log('-------', this.message);
+					},
+					btn2Click(param) {
+						console.log('-----', param);
+					},
+					btn3Click(param, event) {
+						console.log('-----', param, event);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

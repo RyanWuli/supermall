@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 遍历对象 默认是值遍历 -->
+			<ul>
+				<li v-for="item in person">{{item}}</li>
+			</ul>
+			
+			<!-- 遍历对象获取key -->
+			<ul>
+				<li v-for="(value, key) in person">{{value}}-{{key}}</li>
+			</ul>
+			
+			<!-- 如果还想获取下标 -->
+			<ul>
+				<li v-for="(value, key, index) in person">{{value}}-{{key}}-{{index}}</li>
+			</ul>
+		</div>
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					person: {
+						name: '迪丽热巴',
+						age: '28',
+						height: '1.70'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			{{message}}
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+		</div>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			
+			// 创建组件的构造对象
+			const cpnC = Vue.extend({
+				template: `
+					<div>
+						<h2>我是标题</h2>
+						<p>我是内容，呵呵呵呵呵</p>
+						<p>我是内容，嘿嘿嘿嘿嘿</p>
+					</div>`
+			})
+			
+			// 注册组件
+			Vue.component('my-cpn', cpnC)
+			
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue'
+				}
+			})
+		</script>
+		
+	</body>
+</html>

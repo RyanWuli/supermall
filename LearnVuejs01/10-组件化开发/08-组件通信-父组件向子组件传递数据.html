@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn :cmovies="movies" :cmessage="message"></cpn>
+		</div>
+		
+		<template id="cpn">
+			<div>
+				<h2>{{cmovies}}</h2>
+				<h2>{{cmessage}}</h2>
+				<ul>
+					<li v-for="item in cmovies">
+						{{item}}
+					</li>
+				</ul>
+			</div>
+		</template>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					movies: [
+						'唐人街探案', '泰坦尼克号', '美人鱼', '霸王别姬', '西虹市首富'
+					]
+				},
+				components: {
+					cpn: {
+						template: '#cpn',
+						// 数组写法
+						// props: ['cmovies', 'cmessage']
+						
+						// 对象写法
+						props: {
+							// cmovies: Array,
+							// cmessage: String
+							
+							// 指定默认值
+							cmessage: {
+								type: String,
+								default: '陈嘉桦',
+								required: true
+							},
+							
+							// 对象或者数组默认值需要函数返回
+							cmovies: {
+								type: Array,
+								default() {
+									return []
+								}
+							}
+						}
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

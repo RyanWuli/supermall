@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// setTimeout(function () {
+			// 	console.log(this);
+			// }, 1000)
+			// setTimeout(() => {
+			// 	console.log(this);
+			// }, 1000)
+			
+			// const obj = {
+			// 	aaa() {
+			// 		// setTimeout(function () {
+			// 		// 	console.log(this);
+			// 		// }, 1000)
+					
+			// 		// 箭头函数找最近的 this
+			// 		setTimeout(() => console.log(this), 1000)
+			// 	}
+			// }
+			// obj.aaa()
+			
+			const object = {
+				bbb() {
+					setTimeout(function () {
+						setTimeout(function () {
+							console.log(this);
+						})
+						setTimeout(() => console.log(this))
+					})
+					
+					setTimeout(() => {
+						setTimeout(function () {
+							console.log(this);
+						})
+						setTimeout(() => console.log(this))
+					})
+				}
+			}
+			object.bbb()
+		</script>
+	</body>
+</html>

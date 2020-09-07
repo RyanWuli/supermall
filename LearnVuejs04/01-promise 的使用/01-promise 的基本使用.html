@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			// setTimeout(() => {
+			// 	console.log('Hello World');
+			// }, 5000)
+
+			// 以前的嵌套，嵌套多了很难读
+			// setTimeout(() => {
+			// 	console.log('第一层嵌套');
+			// 	setTimeout(() => {
+			// 		console.log('第二层嵌套');
+			// 		setTimeout(() => {
+			// 			console.log('第三层嵌套');
+			// 		}, 5000)
+			// 	}, 5000)
+			// }, 5000)
+
+			// 参数 》函数 resolve, reject
+			// resolve, reject 也是函数
+			// 链式编程 promise 一般是异步操作的时候用
+			new Promise((resolve, reject) => {
+				setTimeout(() => {
+					// 模拟第一次网络请求
+					resolve('vue')
+				}, 5000)
+			}).then((data) => {
+				// 模拟第一次数据处理
+				console.log(data);
+				return new Promise((resolve, reject) => {
+					// 第二次网络请求的代码
+					setTimeout(() => {
+						resolve()
+					}, 5000)
+				})
+			}).then(() => {
+				// 第二次处理数据
+				console.log('hello2');
+				return new Promise((resolve, reject) => {
+					// 第三次网络请求
+					setTimeout(() => {
+						resolve()
+					})
+				})
+			}).then(() => {
+				// 第三次处理数据
+				console.log('hello3');
+			})
+		</script>
+
+	</body>
+</html>

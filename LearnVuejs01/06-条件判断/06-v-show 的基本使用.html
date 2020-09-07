@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			
+			<!-- v-if:需要的时候渲染（html 才有），不需要的时候不渲染（html 没有），v-show:需要或者不需要的时候都渲染，但是不需要的时候不显示而已 -->
+			<h2 v-if="isShow" id="if">{{message}}</h2>
+			<h2 v-show="isShow" id="show">{{message}}</h2>
+			
+		</div>
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					isShow: true
+				}
+			})
+		</script>
+	</body>
+</html>

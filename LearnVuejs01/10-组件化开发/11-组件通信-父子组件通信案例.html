@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn :number="num" @no-change="changeNum" @no2-change="changeNum2" :number2="num2"></cpn>
+		</div>
+		
+		<template id="cpn">
+			<div>
+				<h2>props-number: {{number}}</h2>
+				<h2>data-no: {{no}}</h2>
+				<!-- <input v-model="no" /> -->
+				<!-- 组件内部需要双向绑定的话，并且需要传递到父组件，需要拆分 v-model 为 :value 和  @input-->
+				<input :value="no" @input="noInput" />
+				<h2>props-number2: {{number2}}</h2>
+				<h2>data-no2: {{no2}}</h2>
+				<!-- <input v-model="no2" /> -->
+				<input :value="no2" @input="no2Input" />
+			</div>
+		</template>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					num: 0,
+					num2: 1
+				},
+				methods: {
+					changeNum(value) {
+						this.num = parseFloat(value)
+					},
+					changeNum2(value) {
+						this.num2 = parseFloat(value)
+					}
+				},
+				components: {
+					cpn: {
+						template: '#cpn',
+						props: {
+							number: {
+								type: Number,
+								default: 0
+							},
+							number2: {
+								type: Number,
+								default: 1
+							}
+						},
+						data() {
+							return {
+								no: this.number,
+								no2: this.number2
+							}
+						},
+						methods: {
+							noInput(event) {
+								let n = event.target.value
+								if (n) {
+									this.no = n
+								} else {
+									this.no = 0
+								}
+								this.$emit('no-change', this.no) // 传递给父组件修改值
+								
+								// no2 是 no 的 100 倍
+								this.no2 = this.no * 100
+								this.$emit('no2-change', this.no2)
+							},
+							no2Input(event) {
+								let n = event.target.value
+								if (n) {
+									this.no2 = n
+								} else {
+									this.no2 = 1
+								}
+								this.$emit('no2-change', this.no2) // 传递给父组件修改值
+								
+								// no 是 no2 的 100 分之一
+								this.no = this.no2 / 100
+								this.$emit('no-change', this.no)
+							}
+						},
+						<!-- 可以用 watch 监听属性改变 -->
+						// watch: {
+						// 	// newValue, oldValue
+						// 	no(newValue) {
+						// 		this.no2 = newValue * 100
+						// 		this.$emit('no-change', newValue)
+						// 	},
+						// 	no2(newValue) {
+						// 		this.no = newValue / 100
+						// 		this.$emit('no2-change', newValue)
+						// 	}
+						// }
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

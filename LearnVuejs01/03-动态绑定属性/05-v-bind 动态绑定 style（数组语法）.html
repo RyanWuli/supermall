@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app" :style="[baseStyle, style]">
+			{{message}}
+			<h2 :style="getStyle()">{{name}}</h2>
+		</div>
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					name: '卡卡西',
+					baseStyle: {
+						fontSize: '100px',
+						color: 'red'
+					},
+					style: {
+						backgroundColor: 'orange'
+					}
+				},
+				methods: {
+					getStyle: function () {
+						return [
+							this.baseStyle,
+							this.style
+						]
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn></cpn>
+			<cpn>
+				<!-- 为了获取子组件中传过来的 pLanguage -->
+				<template slot-scope="slot">
+					<!-- <span v-for="item in slot.data">{{item}}-</span> -->
+					<span>{{slot.data.join(' - ')}}</span>
+				</template>
+			</cpn>
+			
+			<cpn>
+				<!-- 为了获取子组件中传过来的 pLanguage -->
+				<template slot-scope="slot">
+					<!-- <span v-for="item in slot.data">{{item}}*</span> -->
+					<!-- join 在数组之间用什么符号进行分割 -->
+					<span>{{slot.data.join(' * ')}}</span>
+				</template>
+			</cpn>
+		</div>
+	
+		<template id="cpn">
+			<div>
+				<!-- <slot>
+					<ul>
+						<li v-for="item in pLanguage">{{item}}</li>
+					</ul>
+				</slot> -->
+				<slot :data="pLanguage">
+					<ul>
+						<li v-for="item in pLanguage">{{item}}</li>
+					</ul>
+				</slot>
+			</div>
+		</template>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue'
+				},
+				components: {
+					cpn: {
+						template: '#cpn',
+						data() {
+							return {
+								pLanguage: ['JavaScript', 'c++', 'Java', 'c#', 'Python', 'Go', 'Swift']
+							}
+						}
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			Promise.all([
+				new Promise((resolve, reject) => {
+					setTimeout(() => {
+						resolve('请求数据成功')
+					},10000)
+				}),
+				new Promise((resolve, reject) => {
+					setTimeout(() => {
+						resolve('请求数据成功2')
+					}, 5000)
+				})
+			]).then((res) => { // res 是个数组分别是两次异步的数据顺序一致
+				console.log(res);
+			})
+		</script>
+	</body>
+</html>

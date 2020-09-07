@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<ul>
+				<li v-for="item in letters">{{item}}</li>
+			</ul>
+			<button @click="btnClick">添加</button>
+		</div>
+
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue',
+					letters: [
+						'A', 'B', 'C', 'D', 'E'
+					]
+				},
+				methods: {
+					btnClick() {
+						// 数据响应式的数组方法---------------------
+						// this.letters.push('aaa') // 添加到最后一个，也可以多个
+						// this.letters.push('aaa', 'bbb', 'ccc') // 也可以多个
+						// this.letters.pop() // 删除最后一个
+						// this.letters.shift() // 删除第一个元素
+						// this.letters.unshift('ccc') // 在最前面插入数据
+						
+						// 作用可以是删除可以是插入可以是删除并插入（第一个参数起始位置，第二个参数删除个数，第三个参数添加元素）
+						this.letters.splice(1) // 表示删除下标为1及其以后的所有元素
+						this.letters.splice(1,2) // 表示删除下表为1的，往后共删除二个元素
+						this.letters.splice(1, 2, 'm') // 从下标为1删除两个，并且添加一个在最后
+						this.letters.splice(1, 2, 'm', 'n') // 从下标为1删除两个，并且添加两个个在最后，相当于替换了两个，多个也可以
+						this.letters.sort() // 排序
+						this.letters.reverse() // 反转
+					
+						
+						// 非响应式的方法-------------------------------
+						// this.letters[0] = 'bbb' // 可以用 splice
+						// 也可以用 vue 的 set 方法，第一个参数是指定修改的对象，第二个参数是索引值，第三个参数事替换值
+						Vue.set(this.letters, 0, 'bbb')
+						
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

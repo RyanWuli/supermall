@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{fullName}}</h2>
+		</div>
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					firstName: 'Lebron',
+					lastName: 'James'
+				},
+				// 计算属性一般没有 set 方法，这样就是只读属性
+				computed: {
+					fullName: {
+						set: function (newValue) {
+							console.log('设置属性了*****');
+							const names = newValue.split(' ')
+							this.firstName = names[0]
+							this.lastName = names[1]
+						},
+						get: function () {
+							return this.firstName + ' ' + this.lastName
+						}
+					}
+					// 只有 get 方法，所以就简化了
+					// fullName: function () {
+					// 	return this.firstName + ' ' + this.lastName
+					// }
+				}
+			})
+		</script>
+	</body>
+</html>

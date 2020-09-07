@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#app div {
+				height: 500px;
+				width: 500px;
+				background-color: #FF0000;
+			}
+			#app div button {
+				height: 200px;
+				width: 200px;
+				background-color: #FFA500;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- .stop 阻止冒泡事件，只执行button的事件 -->
+			<div @click="divClick">
+				<button @click.stop="btnClick">按钮</button>
+			</div>
+			<br />
+			<!-- .prevent 阻止默认事件，form 会执行自动提交的 -->
+			<form action="">
+				<input type="submit" value="提交" @click.prevent="submitClick" />
+			</form>
+			
+			<!-- .enter 指定enter键执行事件，不加就是所有键 -->
+			<input @keyup.enter="keyUp" />
+			
+			<!-- 只触发第一次 -->
+			<button @click.once="btn2Click">按钮2</button>
+		</div>
+		
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue'
+				},
+				methods: {
+					divClick() {
+						console.log('-----divClick');
+					},
+					btnClick() {
+						console.log('-----btnClick');
+					},
+					submitClick() {
+						console.log('-----submitClick');
+					},
+					keyUp() {
+						console.log('keyUp');
+					},
+					btn2Click() {
+						console.log('-----btn2Click');
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
